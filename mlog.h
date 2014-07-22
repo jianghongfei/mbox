@@ -5,7 +5,6 @@
 
 extern const char *log_path;
 
-void
-mlog(const char *format, ...);
+void mlog(const char *format, ...);
 
 #endif

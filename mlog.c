@@ -4,8 +4,7 @@
 
 #include "mlog.h"
 
-void
-mlog_to_file(const char *time, const char *message)
+static void mlog_to_file(const char *time, const char *message)
 {
 	FILE *logfile;
 
@@ -19,8 +18,7 @@ mlog_to_file(const char *time, const char *message)
 	fclose(logfile);
 }
 
-void
-mlog(const char *format, ...)
+void mlog(const char *format, ...)
 {
 	char message[BUFFER_SIZE];
 	char timestamp[BUFFER_SIZE];
@@ -31,7 +29,7 @@ mlog(const char *format, ...)
 	struct tm *tmptr;
 
 	va_start(args, format);
-	vsprintf(message, format, args);
+	vsnprintf(message, BUFFER_SIZE, format, args);
 	va_end(args);
 
 	t = time(NULL);
@@ -40,4 +38,3 @@ mlog(const char *format, ...)
 
 	mlog_to_file(timestamp, message);
 }
-

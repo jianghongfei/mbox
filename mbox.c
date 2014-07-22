@@ -73,7 +73,6 @@ void daemonize()
 		mlog("Quit if already running");
 		exit(EXIT_SUCCESS);	// can not lock
 	}
-
 	// first instance continues
 	sprintf(str, "%d\n", getpid());
 	write(lfp, str, strlen(str));	// record pid to lockfile
